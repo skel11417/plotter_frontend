@@ -12,11 +12,13 @@ class Stage extends Component {
   render(){
     return (
       <div id="parent" style={this.style}>
-      {this.props.itemsOnStage.map(item =>
+      {this.props.itemsOnStage.map((item) =>
         <Icon
-          key={item.id}
+          key={item.uuid}
+          index={item.uuid}
           item={item}
           onAddItem={this.props.addItemToStage}
+          onMouseUp={this.props.updateItemPos}
         />)}
       </div>
   )

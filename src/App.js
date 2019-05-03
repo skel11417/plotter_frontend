@@ -3,6 +3,7 @@ import './App.css';
 import Nav from './component/Nav'
 import Toolbar from './container/Toolbar'
 import Stage from './container/Stage'
+import UUID from 'uuid/v4'
 
 class App extends Component {
 
@@ -10,7 +11,8 @@ class App extends Component {
     super()
     this.state = {
       itemsOnStage: [],
-      itemList: this.getItemList()
+      itemList: this.getItemList(),
+      currentItem: {}
     }
   }
 
@@ -27,9 +29,32 @@ class App extends Component {
   }
 
   addItemToStage = (item) => {
-    console.log(item)
+    item = {...item, uuid: UUID()}
     this.setState({
       itemsOnStage: [...this.state.itemsOnStage, item]
+    })
+  }
+
+  updateItemPos = (updatedItem) => {
+    this.setState({
+      itemsOnStage: this.newItemPosition(updatedItem)
+    })
+  }
+
+  newItemPosition = ({pos, uuid}) => {
+    console.log(pos, uuid)
+    return this.state.itemsOnStage.map(item => {
+      if (item.uuid === uuid){
+        return {...item, x: pos.x, y: pos.y}
+      } else {
+        return item
+      }
+    })
+  }
+
+  setCurrentItem = (item) => {
+    this.setState({
+      currentItem: item
     })
   }
 
@@ -40,7 +65,8 @@ class App extends Component {
       <Toolbar
         itemList={this.state.itemList} addItemToStage={this.addItemToStage}
       />
-      <Stage itemsOnStage={this.state.itemsOnStage}/>
+      <Stage itemsOnStage={this.state.itemsOnStage} updateItemPos={this.updateItemPos}
+      setCurrentItem={this.setCurrentItem}/>
       </>
     );
   }
