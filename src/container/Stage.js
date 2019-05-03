@@ -4,12 +4,14 @@ import Icon from '../component/Icon'
 class Stage extends Component {
   style = {
     border: 'black 1px solid',
-    minHeight: '400px'
+    minHeight: '400px',
+    position: 'relative',
+    width: '800px'
   }
 
   render(){
     return (
-      <div id="stage" style={this.style}>
+      <div id="parent" style={this.style}>
       {this.props.itemsOnStage.map(item =>
         <Icon
           key={item.id}

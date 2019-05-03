@@ -3,20 +3,25 @@ import ReactDom from 'react-dom'
 import Draggable from 'react-draggable'
 
 const Icon = ({item, onAddItem}) => {
+
   const style = {
-    height: '100px'
+    height: '100px',
+//    position: 'absolute', bottom: `${item.y}px`, right: `${item.x}px`
   }
 
   return (
     <Draggable
-    //  grid={[25, 25]}
       bounds='parent'
-      defaultPosition={{x: 0, y: 0}}>
-        <img
-          alt="mic"
-          src={require(`../icons/${item.image}`)}
-          style={style}
-          />
+      onMouseDown={e=> e.preventDefault()}
+      defaultPosition={{x: item.x, y: item.y}}
+        >
+          <img
+
+            alt="mic"
+            src={require(`../icons/${item.image}`)}
+            style={style}
+            />
+
       </Draggable>
     )
 }
