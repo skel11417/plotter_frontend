@@ -118,7 +118,7 @@ class Draggable extends React.Component {
       onMouseDown={this.onMouseDown}
       onMouseUp={this.onMouseUp}
       onMouseMove={this.onMouseMove}
-      onDoubleClick={()=>console.log('doubleclick')}
+      onDoubleClick={()=>this.props.deleteItem(this.props.item)}
       style={style}></img>
   }
 }

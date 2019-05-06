@@ -25,6 +25,7 @@ class Stage extends Component {
           key={item.items_plots_id}
           initialPos={{x: item.x, y: item.y}}
           bounds={this.state.bounds}
+          deleteItem={this.props.deleteItem}
           updateItemPos={this.props.updateItemPos}
           style={{
             border: '2px solid #aa5',

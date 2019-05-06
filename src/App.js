@@ -80,6 +80,20 @@ class App extends Component {
         .then(this.updatePlotState)
     }
 
+  deleteItem = (item) => {
+    const URL = `http://localhost:3000/plots/${this.state.plotId}`
+    const options = {
+      method: "DELETE",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(item)
+    }
+
+    fetch(URL, options )
+      .then(resp => resp.json())
+      .then(this.updatePlotState)
+  }
+
+
   updateItemPos = (updatedItem) => {
     this.setState({
       itemsOnStage: this.newItemPosition(updatedItem)
@@ -110,7 +124,8 @@ class App extends Component {
         itemList={this.state.itemList} addItemToStage={this.addItemToStage}
       />
       <Stage itemsOnStage={this.state.itemsOnStage} updateItemPos={this.updateItemPos}
-      setCurrentItem={this.setCurrentItem}/>
+      setCurrentItem={this.setCurrentItem}
+      deleteItem={this.deleteItem}/>
       </>
     );
   }
