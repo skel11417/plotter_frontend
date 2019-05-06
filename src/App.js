@@ -18,14 +18,24 @@ class App extends Component {
 
   getItemList = () =>{
     return [
-      {id: 1, name: 'mic stand', image: 'micstand.png', x: 200, y: 0},
-      {id: 2, name: 'five-piece drumset', image: 'drumset-5.jpg', x: 200, y: 200},
-      {id: 3, name: 'stage monitor', image: 'monitor.png', x: 200, y: 0}
+      {id: 1, name: 'mic stand', image: 'micstand.png'},
+      {id: 2, name: 'five-piece drumset', image: 'drumset-5.jpg'},
+      {id: 3, name: 'stage monitor', image: 'monitor.png'}
     ]
   }
 
   componentDidMount(){
-    console.log('mounted')
+    this.getItemsOnStage()
+    .then(data => {
+      this.setState({
+        itemsOnStage: data.items
+      })
+    })
+  }
+
+  getItemsOnStage = () => {
+    let URL = 'http://localhost:3000/plots/4'
+    return fetch(URL).then(resp => resp.json())
   }
 
   addItemToStage = (item) => {

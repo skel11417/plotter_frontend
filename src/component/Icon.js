@@ -1,9 +1,8 @@
 import React from 'react'
-import ReactDom from 'react-dom'
+// import ReactDom from 'react-dom'
 import Draggable from 'react-draggable'
 
 const Icon = ({item, onMouseUp, index}) => {
-
   const style = {
     height: '100px'
   }
