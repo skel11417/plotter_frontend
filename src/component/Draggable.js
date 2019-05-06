@@ -42,7 +42,6 @@ class Draggable extends React.Component {
 
     // let pos = e.nativeEvent.target.getBoundingClientRect()
     //Conditional logic to move element
-    console.log(pos, e.pageX, e.pageY)
     this.setState({
       dragging: true,
       rel: {
@@ -60,13 +59,40 @@ class Draggable extends React.Component {
     e.preventDefault()
   }
 
+  constrainBounds = (pos) => {
+    const size = 100
+    const bounds = {
+      right: this.props.bounds.right - size,
+      bottom: this.props.bounds.bottom - size
+    }
+    if (pos.x <= 0) {
+      pos.x = 0
+    }
+    if (pos.x >= bounds.right) {
+      pos.x = bounds.right
+    }
+    if (pos.y <= 0) {
+      pos.y = 0
+    }
+    if (pos.y >= bounds.bottom){
+      pos.y = bounds.bottom
+    }
+  }
+
   onMouseMove = (e) => {
     if (!this.state.dragging) return
-    // let newPos = {}
+    let newPos = {
+      x: e.pageX - this.state.rel.x,
+      y: e.pageY - this.state.rel.y
+    }
+
+    // Create bounds handler function
+      this.constrainBounds(newPos)
+
       this.setState({
         pos: {
-          x: e.pageX - this.state.rel.x,
-          y: e.pageY - this.state.rel.y
+          x: newPos.x,
+          y: newPos.y
         }
       })
       e.stopPropagation()
@@ -74,15 +100,12 @@ class Draggable extends React.Component {
   }
 
   render(){
-    // transferPropsTo will merge style & other props passed into our
-    // component to also be on the child DIV.
-    // console.log(this.state.pos.x, this.state.pos.y)
     const style = {
         position: 'relative',
         left: this.state.pos.x + 'px',
         top: this.state.pos.y + 'px',
-        width: '200px',
-        height: '200px',
+        width: '100px',
+        height: '100px',
         backgroundColor: "#cca"
       }
     return <div

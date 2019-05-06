@@ -3,6 +3,11 @@ import Icon from '../component/Icon'
 import Draggable from '../component/Draggable'
 
 class Stage extends Component {
+
+  state = {
+    bounds: {top: 0, left: 0, bottom: 300, right: 600}
+  }
+
   style = {
     border: 'black 1px solid',
     minHeight: '300px',
@@ -31,6 +36,7 @@ class Stage extends Component {
       <div id="parent" style={this.style}>
       <Draggable
         className='my-draggable'
+        bounds={this.state.bounds}
         style={{
         border: '2px solid #aa5',
         padding: '10px'}
