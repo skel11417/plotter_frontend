@@ -22,7 +22,7 @@ class Stage extends Component {
       {this.props.itemsOnStage.map(item =>
         <Draggable
           item={item}
-          key={item.id}
+          key={item.items_plots_id}
           initialPos={{x: item.x, y: item.y}}
           bounds={this.state.bounds}
           updateItemPos={this.props.updateItemPos}

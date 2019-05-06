@@ -30,7 +30,6 @@ class Draggable extends React.Component {
 
   // calculate relative position to the mouse and set dragging=true
   onMouseDown = (e) => {
-    console.log("i'm clicked")
     // only left mouse button
     if (e.button !== 0) return
     const pos = {
@@ -55,7 +54,7 @@ class Draggable extends React.Component {
   onMouseUp = (e) => {
     this.setState({dragging: false})
     // update the state in App
-    this.props.updateItemPos({pos: this.state.pos, id: this.props.item.id})
+    this.props.updateItemPos({pos: this.state.pos, id: this.props.item.items_plots_id})
 
     e.stopPropagation()
     e.preventDefault()

@@ -7,16 +7,29 @@ import UUID from 'uuid/v4'
 
 class App extends Component {
 
-  constructor(){
-    super()
+  // Creates a new plot if no url has been passed
+  static createNewPlot = () =>{
+    return 5
+  }
+
+  static defaultProps = {
+    // Set this to a fetch call that creates a new
+    // plot instance in the database
+    plotId: this.createNewPlot(),
+  }
+
+  constructor(props){
+    super(props)
     this.state = {
       itemsOnStage: [],
       itemList: this.getItemList(),
       currentItem: {},
-      plotId: null
+      plotId: this.props.plotId
     }
   }
 
+  //
+  // Should be replaced with a method that pulls this from the backend
   getItemList = () =>{
     return [
       {id: 1, name: 'mic stand', image: 'micstand.png'},
@@ -27,40 +40,45 @@ class App extends Component {
 
   savePlot = () =>{
     const URL = `http://localhost:3000/plots/${this.state.plotId}`
-    console.log("saving the plot", URL)
-
     const options = {
       method: "PUT",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({items: this.state.itemsOnStage})
     }
-
     fetch(URL, options )
       .then(resp => resp.json())
-      .then(console.log)
+      .then(this.updatePlotState)
   }
 
   componentDidMount(){
     this.getItemsOnStage()
-    .then(plot => {
-      this.setState({
-        itemsOnStage: plot.items,
-        plotId: plot.id
-      })
+    .then(this.updatePlotState)
+  }
+
+  updatePlotState = (plot) => {
+    this.setState({
+      itemsOnStage: plot.items,
+      plotId: plot.id
     })
   }
 
   getItemsOnStage = () => {
-    let URL = 'http://localhost:3000/plots/4'
+    let URL = `http://localhost:3000/plots/${this.state.plotId}`
     return fetch(URL).then(resp => resp.json())
   }
 
   addItemToStage = (item) => {
-    item = {...item, uuid: UUID()}
-    this.setState({
-      itemsOnStage: [...this.state.itemsOnStage, item]
-    })
-  }
+      const URL = `http://localhost:3000/plots/${this.state.plotId}`
+      const options = {
+        method: "PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({items: [item]})
+      }
+
+      fetch(URL, options )
+        .then(resp => resp.json())
+        .then(this.updatePlotState)
+    }
 
   updateItemPos = (updatedItem) => {
     this.setState({
@@ -70,7 +88,7 @@ class App extends Component {
 
   newItemPosition = ({pos, id}) => {
     return this.state.itemsOnStage.map(item => {
-      if (item.id === id){
+      if (item.items_plots_id === id){
         return {...item, x: pos.x, y: pos.y}
       } else {
         return item

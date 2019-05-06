@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-// import Icon from '../component/Icon.js'
 
 class Toolbar extends Component {
 
