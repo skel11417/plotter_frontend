@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Icon from '../component/Icon'
+// import Icon from '../component/Icon'
 import Draggable from '../component/Draggable'
 
 class Stage extends Component {
@@ -16,34 +16,25 @@ class Stage extends Component {
     marginLeft: '20px'
   }
 
-  // render(){
-  //   return (
-  //     <div id="parent" style={this.style}>
-  //     {this.props.itemsOnStage.map((item) =>
-  //       <Icon
-  //         key={item.uuid}
-  //         index={item.uuid}
-  //         item={item}
-  //         onAddItem={this.props.addItemToStage}
-  //         onMouseUp={this.props.updateItemPos}
-  //       />)}
-  //     </div>
-  // )
-  // }
-
   render(){
     return (
       <div id="parent" style={this.style}>
-      <Draggable
-        className='my-draggable'
-        bounds={this.state.bounds}
-        style={{
-        border: '2px solid #aa5',
-        padding: '10px'}
-        }
+      {this.props.itemsOnStage.map(item =>
+        <Draggable
+          item={item}
+          key={item.id}
+          initialPos={{x: item.x, y: item.y}}
+          bounds={this.state.bounds}
+          updateItemPos={this.props.updateItemPos}
+          style={{
+            border: '2px solid #aa5',
+            padding: '10px'}
+          }
         />
-        </div>
       )
+    }
+    </div>
+  )
   }
 }
 

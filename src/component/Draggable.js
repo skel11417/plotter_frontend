@@ -30,6 +30,7 @@ class Draggable extends React.Component {
 
   // calculate relative position to the mouse and set dragging=true
   onMouseDown = (e) => {
+    console.log("i'm clicked")
     // only left mouse button
     if (e.button !== 0) return
     const pos = {
@@ -53,6 +54,9 @@ class Draggable extends React.Component {
 
   onMouseUp = (e) => {
     this.setState({dragging: false})
+    // update the state in App
+    this.props.updateItemPos({pos: this.state.pos, id: this.props.item.id})
+
     e.stopPropagation()
     e.preventDefault()
   }
@@ -98,21 +102,25 @@ class Draggable extends React.Component {
 
   render(){
     const style = {
-        position: 'relative',
+        position: 'absolute',
         left: this.state.pos.x + 'px',
         top: this.state.pos.y + 'px',
         width: '100px',
         height: '100px',
-        backgroundColor: "#cca"
+        float: 'left'
+        // backgroundColor: "#cca"
       }
-    return <div
+    return <img
       cursor="pointer"
+      alt="mic"
+      src={require(`../icons/${this.props.item.image}`)}
       ref={this.refCallback}
       pos={this.state.pos}
       onMouseDown={this.onMouseDown}
       onMouseUp={this.onMouseUp}
       onMouseMove={this.onMouseMove}
-      style={style}></div>
+      onDoubleClick={()=>console.log('doubleclick')}
+      style={style}></img>
   }
 }
 export default Draggable

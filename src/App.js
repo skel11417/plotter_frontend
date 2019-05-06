@@ -12,7 +12,8 @@ class App extends Component {
     this.state = {
       itemsOnStage: [],
       itemList: this.getItemList(),
-      currentItem: {}
+      currentItem: {},
+      plotId: null
     }
   }
 
@@ -24,11 +25,27 @@ class App extends Component {
     ]
   }
 
+  savePlot = () =>{
+    const URL = `http://localhost:3000/plots/${this.state.plotId}`
+    console.log("saving the plot", URL)
+
+    const options = {
+      method: "PUT",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({items: this.state.itemsOnStage})
+    }
+
+    fetch(URL, options )
+      .then(resp => resp.json())
+      .then(console.log)
+  }
+
   componentDidMount(){
     this.getItemsOnStage()
-    .then(data => {
+    .then(plot => {
       this.setState({
-        itemsOnStage: data.items
+        itemsOnStage: plot.items,
+        plotId: plot.id
       })
     })
   }
@@ -51,10 +68,9 @@ class App extends Component {
     })
   }
 
-  newItemPosition = ({pos, uuid}) => {
-    console.log(pos, uuid)
+  newItemPosition = ({pos, id}) => {
     return this.state.itemsOnStage.map(item => {
-      if (item.uuid === uuid){
+      if (item.id === id){
         return {...item, x: pos.x, y: pos.y}
       } else {
         return item
@@ -71,7 +87,7 @@ class App extends Component {
   render(){
     return (
       <>
-      <Nav/>
+      <Nav savePlot={this.savePlot}/>
       <Toolbar
         itemList={this.state.itemList} addItemToStage={this.addItemToStage}
       />
