@@ -17,9 +17,6 @@ class Draggable extends React.Component {
   // our div), but then the experience would be possibly be janky. If there's
   // anything w/ a higher z-index that gets in the way, then you're toast,
   // etc.
-  //
-  // MAY NEED THIS
-  //
 
   componentDidUpdate(props, state) {
     if (this.state.dragging && !state.dragging) {
@@ -39,8 +36,9 @@ class Draggable extends React.Component {
       top: e.nativeEvent.target.offsetTop,
       left: e.nativeEvent.target.offsetLeft
     }
-
+    // Use this to get information about parent div?
     // let pos = e.nativeEvent.target.getBoundingClientRect()
+
     //Conditional logic to move element
     this.setState({
       dragging: true,
@@ -85,8 +83,7 @@ class Draggable extends React.Component {
       x: e.pageX - this.state.rel.x,
       y: e.pageY - this.state.rel.y
     }
-
-    // Create bounds handler function
+      // check the bounds of the new position
       this.constrainBounds(newPos)
 
       this.setState({
@@ -110,13 +107,12 @@ class Draggable extends React.Component {
       }
     return <div
       cursor="pointer"
-      position='relative'
       ref={this.refCallback}
       pos={this.state.pos}
       onMouseDown={this.onMouseDown}
       onMouseUp={this.onMouseUp}
       onMouseMove={this.onMouseMove}
-      style={style}>Hey</div>
+      style={style}></div>
   }
 }
 export default Draggable
