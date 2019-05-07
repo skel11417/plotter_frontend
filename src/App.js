@@ -86,8 +86,7 @@ class App extends Component {
     .then(resp => resp.json())
     .then(plot => {
       this.updatePlotState(plot)
-      // debugger
-      // this.props.history.push('/bleh')
+      if (newPlot) this.props.history.push(plot.url)
     }
     )
   }
