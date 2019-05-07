@@ -3,7 +3,7 @@ import './App.css';
 import Nav from './component/Nav'
 import Toolbar from './container/Toolbar'
 import Stage from './container/Stage'
-
+import { withRouter } from 'react-router-dom';
 
 class App extends Component {
 
@@ -62,17 +62,35 @@ class App extends Component {
   }
 
   addItemToStage = (item) => {
-      const URL = `http://localhost:3000/plots/${this.state.plotId}`
-      const options = {
+    let URL
+    let options
+    let newPlot = false
+    if (this.state.plotId){
+      URL = `http://localhost:3000/plots/${this.state.plotId}`
+      options = {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({items: [item]})
       }
-
-      fetch(URL, options )
-        .then(resp => resp.json())
-        .then(this.updatePlotState)
+    } else {
+      newPlot = true
+      URL = "http://localhost:3000/plots/new"
+      options = {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({items: [item]})
+      }
     }
+    // Make fetch call
+    fetch(URL, options )
+    .then(resp => resp.json())
+    .then(plot => {
+      this.updatePlotState(plot)
+      // debugger
+      // this.props.history.push('/bleh')
+    }
+    )
+  }
 
   deleteItem = (item) => {
     const URL = `http://localhost:3000/plots/${this.state.plotId}`
@@ -125,4 +143,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
