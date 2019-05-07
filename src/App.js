@@ -130,7 +130,7 @@ class App extends Component {
     return (
       <>
       <Nav savePlot={this.savePlot}/>
-      <ModalContainer slug={this.state.slug}/>
+      {this.state.plotId ? <ModalContainer slug={this.state.slug}/> :null }
       <Toolbar
         itemList={this.state.itemList} addItemToStage={this.addItemToStage}
       />
