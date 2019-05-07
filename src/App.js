@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
+import 'semantic-ui-css/semantic.min.css'
 import Nav from './component/Nav'
+import ModalContainer from './container/ModalContainer'
 import Toolbar from './container/Toolbar'
 import Stage from './container/Stage'
 
@@ -39,7 +41,6 @@ class App extends Component {
 
   componentDidMount(){
     // Renders stage plot items if viewing saved plot
-    debugger
     if (this.state.slug) {
       this.getStagePlot()
       .then(this.updatePlotState)
@@ -129,6 +130,7 @@ class App extends Component {
     return (
       <>
       <Nav savePlot={this.savePlot}/>
+      <ModalContainer slug={this.state.slug}/>
       <Toolbar
         itemList={this.state.itemList} addItemToStage={this.addItemToStage}
       />
