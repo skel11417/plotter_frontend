@@ -124,12 +124,13 @@ class App extends Component {
   }
 
   render(){
+    const {plotId, slug, itemList} = this.state
     return (
       <>
       <Nav savePlot={this.savePlot}/>
-      {this.state.plotId ? <ModalContainer slug={this.state.slug}/> :null }
+      {plotId ? <ModalContainer slug={slug}/> :null }
       <Toolbar
-        itemList={this.state.itemList} addItemToStage={this.addItemToStage}
+        itemList={itemList} addItemToStage={this.addItemToStage}
       />
       <Stage itemsOnStage={this.state.itemsOnStage} updateItemPos={this.updateItemPos}
       setCurrentItem={this.setCurrentItem}
