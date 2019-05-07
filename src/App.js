@@ -3,7 +3,6 @@ import './App.css';
 import Nav from './component/Nav'
 import Toolbar from './container/Toolbar'
 import Stage from './container/Stage'
-import { withRouter } from 'react-router-dom';
 
 class App extends Component {
 
@@ -12,12 +11,11 @@ class App extends Component {
     this.state = {
       itemsOnStage: [],
       itemList: this.getItemList(),
-      currentItem: {},
-      plotId: props.match.params.slug
+      plotId: null,
+      slug: this.props.match.params.slug
     }
   }
 
-  //
   // Should be replaced with a method that pulls this from the backend
   getItemList = () =>{
     return [
@@ -40,12 +38,11 @@ class App extends Component {
   }
 
   componentDidMount(){
-    if (this.props.match.params.slug) {
-      console.log('loading this plot')
-      this.getItemsOnStage()
+    // Renders stage plot items if viewing saved plot
+    debugger
+    if (this.state.slug) {
+      this.getStagePlot()
       .then(this.updatePlotState)
-    } else {
-      console.log('create new plot')
     }
   }
 
@@ -56,8 +53,9 @@ class App extends Component {
     })
   }
 
-  getItemsOnStage = () => {
-    let URL = `http://localhost:3000/plots/${this.state.plotId}`
+  getStagePlot = () => {
+    // retrieves stagePlot using url slug
+    let URL = `http://localhost:3000/plots/${this.state.slug}`
     return fetch(URL).then(resp => resp.json())
   }
 
@@ -142,4 +140,4 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+export default App;
