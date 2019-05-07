@@ -14,11 +14,11 @@ const Icon = ({item, onMouseUp, index}) => {
       onStop={(pos)=>onMouseUp({pos, uuid: item.uuid})}
       defaultPosition={{x: item.x, y: item.y}}
         >
-          <img
-            alt="mic"
-            src={require(`../icons/${item.image}`)}
-            style={style}
-            />
+        <img
+          alt="mic"
+          src={require(`../icons/${item.image}`)}
+          style={style}
+          />
       </Draggable>
     )
 }
