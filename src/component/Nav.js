@@ -4,7 +4,7 @@ const Nav = (props) => {
   return (
     <nav>
       <h1>Stage Plotter</h1>
-      <button onClick={props.savePlot}>Button</button>
+      <button onClick={props.savePlot}>Save Plot</button>
     </nav>
   )
 }

@@ -3,20 +3,9 @@ import './App.css';
 import Nav from './component/Nav'
 import Toolbar from './container/Toolbar'
 import Stage from './container/Stage'
-import UUID from 'uuid/v4'
+
 
 class App extends Component {
-
-  // Creates a new plot if no url has been passed
-  static createNewPlot = () =>{
-    return 5
-  }
-
-  static defaultProps = {
-    // Set this to a fetch call that creates a new
-    // plot instance in the database
-    plotId: this.createNewPlot(),
-  }
 
   constructor(props){
     super(props)
@@ -24,7 +13,7 @@ class App extends Component {
       itemsOnStage: [],
       itemList: this.getItemList(),
       currentItem: {},
-      plotId: this.props.plotId
+      plotId: props.match.params.slug
     }
   }
 
@@ -51,8 +40,13 @@ class App extends Component {
   }
 
   componentDidMount(){
-    this.getItemsOnStage()
-    .then(this.updatePlotState)
+    if (this.props.match.params.slug) {
+      console.log('loading this plot')
+      this.getItemsOnStage()
+      .then(this.updatePlotState)
+    } else {
+      console.log('create new plot')
+    }
   }
 
   updatePlotState = (plot) => {
