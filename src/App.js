@@ -12,7 +12,7 @@ class App extends Component {
     super(props)
     this.state = {
       itemsOnStage: [],
-      itemList: this.getItemList(),
+      itemList: [],
       plotId: null,
       slug: this.props.match.params.slug
     }
@@ -20,11 +20,11 @@ class App extends Component {
 
   // Should be replaced with a method that pulls this from the backend
   getItemList = () =>{
-    return [
-      {id: 1, name: 'mic stand', image: 'micstand.png'},
-      {id: 2, name: 'five-piece drumset', image: 'drumset-5.jpg'},
-      {id: 3, name: 'stage monitor', image: 'monitor.png'}
-    ]
+    fetch('http://localhost:3000/items/')
+      .then(resp => resp.json())
+      .then((items) => this.setState({
+            itemList: items
+          }))
   }
 
   savePlot = () =>{
@@ -40,6 +40,9 @@ class App extends Component {
   }
 
   componentDidMount(){
+    // Populates Toolbar with available items
+    this.getItemList()
+
     // Renders stage plot items if viewing saved plot
     if (this.state.slug) {
       this.getStagePlot()
@@ -73,7 +76,7 @@ class App extends Component {
       }
     } else {
       newPlot = true
-      URL = "http://localhost:3000/plots/new"
+      URL = "http://localhost:3000/plots/"
       options = {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -117,12 +120,6 @@ class App extends Component {
       } else {
         return item
       }
-    })
-  }
-
-  setCurrentItem = (item) => {
-    this.setState({
-      currentItem: item
     })
   }
 
