@@ -58,8 +58,7 @@ class App extends Component {
   updatePlotState = (plot) => {
     this.setState({
       itemsOnStage: plot.items,
-      plotId: plot.id,
-      saved: true
+      plotId: plot.id
     })
   }
 
@@ -78,7 +77,7 @@ class App extends Component {
       options = {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({items: [item]})
+        body: JSON.stringify({items: [...this.state.itemsOnStage, item]})
       }
     } else {
       newPlot = true
@@ -133,7 +132,7 @@ class App extends Component {
   render(){
     const {plotId, slug, itemList, saved} = this.state
     return (
-      <>
+      <div>
         <Nav plotId={plotId} slug={slug} saved={saved} savePlot={this.savePlot}/>
         <Toolbar
           itemList={itemList} addItemToStage={this.addItemToStage}
@@ -141,7 +140,7 @@ class App extends Component {
         <Stage itemsOnStage={this.state.itemsOnStage} updateItemPos={this.updateItemPos}
         setCurrentItem={this.setCurrentItem}
         deleteItem={this.deleteItem}/>
-        </>
+        </div>
     );
   }
 }

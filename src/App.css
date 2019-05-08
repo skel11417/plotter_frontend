@@ -1,8 +1,10 @@
 #toolbar img:hover {
-  border: 1px solid black;
-
+  opacity: 1;
 }
-
-#parent {
-  background-image: '/static/media/band-on-stage.66bce311.jpg'
+#toolbar {
+  background-color: black;
+}
+#toolbar img{
+  opacity: 0.8;
+  padding: 0 2px;
 }

@@ -7,10 +7,10 @@ class Draggable extends React.Component {
     this.state = {
       pos: this.props.initialPos,
       dragging: false,
-      rel: null, // position relative to the cursor
+      rel: {}, // position relative to the cursor
       width: 0,
       height: 0
-    }
+    } 
   }
 
   static defaultProps = {
@@ -119,7 +119,7 @@ class Draggable extends React.Component {
       alt="mic"
       src={require(`../icons/${this.props.item.image}`)}
       className = {this.props.item.name}
-  
+
       pos={this.state.pos}
 
       onMouseDown={this.onMouseDown}
