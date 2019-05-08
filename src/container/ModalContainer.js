@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {Button, Modal, Icon, Input} from 'semantic-ui-react'
 import {CopyToClipboard} from 'react-copy-to-clipboard';
-// import 'semantic-ui-css/semantic.min.css'
 
 class ModalContainer extends Component {
   state = {
@@ -12,24 +11,30 @@ class ModalContainer extends Component {
 
   show = size => () => this.setState({ size, open: true })
   close = () => this.setState({ open: false })
+  copyAndClose = () => {
+    this.setState({copied: true})
+    setTimeout(this.close, 1000)
+  }
 
   render(){
     const { open, size, url } = this.state
     return (
-      <div>
-        <Button primary='true' size='small'  onClick={this.show('mini')}>
-          <Icon name='URL' />Share</Button>
+      <>
+        <Button style={{display: 'inline'}} primary size='mini'  onClick={this.show('mini')}>
+          <Icon name='url' />
+            Share
+        </Button>
         <Modal size={size} open={open} onClose={this.close}>
           <Modal.Header>Share your plot</Modal.Header>
           <Modal.Content>
             <CopyToClipboard text={url}
-            onCopy={() => this.setState({copied: true})}>
-              <Input size='small' icon='linkify' value={url} />
+            onCopy={this.copyAndClose}>
+              <Input size='mini' icon='linkify' value={url} />
             </CopyToClipboard>
-            {this.state.copied ? <span style={{color: 'blue'}}> Copied to clipboard.</span> : null}
+            {this.state.copied ? <span style={{color: 'blue'}}> Link copied.</span> : null}
           </Modal.Content>
         </Modal>
-      </div>
+      </>
     )
   }
 }

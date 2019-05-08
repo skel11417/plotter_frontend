@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
 import 'semantic-ui-css/semantic.min.css'
+import bgImage from './icons/band-on-stage.jpg'
 import Nav from './component/Nav'
-import ModalContainer from './container/ModalContainer'
 import Toolbar from './container/Toolbar'
 import Stage from './container/Stage'
 
@@ -14,11 +14,11 @@ class App extends Component {
       itemsOnStage: [],
       itemList: [],
       plotId: null,
-      slug: this.props.match.params.slug
+      slug: this.props.match.params.slug,
+      saved: false
     }
   }
 
-  // Should be replaced with a method that pulls this from the backend
   getItemList = () =>{
     fetch('http://localhost:3000/items/')
       .then(resp => resp.json())
@@ -36,7 +36,12 @@ class App extends Component {
     }
     fetch(URL, options )
       .then(resp => resp.json())
-      .then(this.updatePlotState)
+      .then((plot) => {
+        this.updatePlotState(plot)
+        this.setState({
+          saved: true
+        })
+      })
   }
 
   componentDidMount(){
@@ -53,7 +58,8 @@ class App extends Component {
   updatePlotState = (plot) => {
     this.setState({
       itemsOnStage: plot.items,
-      plotId: plot.id
+      plotId: plot.id,
+      saved: true
     })
   }
 
@@ -109,7 +115,8 @@ class App extends Component {
 
   updateItemPos = (updatedItem) => {
     this.setState({
-      itemsOnStage: this.newItemPosition(updatedItem)
+      itemsOnStage: this.newItemPosition(updatedItem),
+      saved: false
     })
   }
 
@@ -124,18 +131,17 @@ class App extends Component {
   }
 
   render(){
-    const {plotId, slug, itemList} = this.state
+    const {plotId, slug, itemList, saved} = this.state
     return (
       <>
-      <Nav savePlot={this.savePlot}/>
-      {plotId ? <ModalContainer slug={slug}/> :null }
-      <Toolbar
-        itemList={itemList} addItemToStage={this.addItemToStage}
-      />
-      <Stage itemsOnStage={this.state.itemsOnStage} updateItemPos={this.updateItemPos}
-      setCurrentItem={this.setCurrentItem}
-      deleteItem={this.deleteItem}/>
-      </>
+        <Nav plotId={plotId} slug={slug} saved={saved} savePlot={this.savePlot}/>
+        <Toolbar
+          itemList={itemList} addItemToStage={this.addItemToStage}
+        />
+        <Stage itemsOnStage={this.state.itemsOnStage} updateItemPos={this.updateItemPos}
+        setCurrentItem={this.setCurrentItem}
+        deleteItem={this.deleteItem}/>
+        </>
     );
   }
 }

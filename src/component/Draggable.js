@@ -1,4 +1,5 @@
 import React from 'react'
+import '../Draggable.css'
 class Draggable extends React.Component {
 
   constructor(props){
@@ -6,7 +7,9 @@ class Draggable extends React.Component {
     this.state = {
       pos: this.props.initialPos,
       dragging: false,
-      rel: null // position relative to the cursor
+      rel: null, // position relative to the cursor
+      width: 0,
+      height: 0
     }
   }
 
@@ -37,11 +40,14 @@ class Draggable extends React.Component {
       left: e.nativeEvent.target.offsetLeft
     }
     // Use this to get information about parent div?
+    // This is janky but it does the job
+    const clientRect = e.nativeEvent.target.getBoundingClientRect()
     // let pos = e.nativeEvent.target.getBoundingClientRect()
-
     //Conditional logic to move element
     this.setState({
       dragging: true,
+      width: clientRect.width,
+      height: clientRect.height,
       rel: {
         x: e.pageX - pos.left,
         y: e.pageY - pos.top
@@ -61,10 +67,10 @@ class Draggable extends React.Component {
   }
 
   constrainBounds = (pos) => {
-    const size = 100
+    const {height, width} = this.state
     const bounds = {
-      right: this.props.bounds.right - size,
-      bottom: this.props.bounds.bottom - size
+      right: this.props.bounds.right - width,
+      bottom: this.props.bounds.bottom - height
     }
     if (pos.x <= 0) {
       pos.x = 0
@@ -104,17 +110,18 @@ class Draggable extends React.Component {
         position: 'absolute',
         left: this.state.pos.x + 'px',
         top: this.state.pos.y + 'px',
-        width: '100px',
-        height: '100px',
+        // height: 'auto',
         float: 'left'
-        // backgroundColor: "#cca"
       }
+
     return <img
       cursor="pointer"
       alt="mic"
       src={require(`../icons/${this.props.item.image}`)}
-      ref={this.refCallback}
+      className = {this.props.item.name}
+  
       pos={this.state.pos}
+
       onMouseDown={this.onMouseDown}
       onMouseUp={this.onMouseUp}
       onMouseMove={this.onMouseMove}

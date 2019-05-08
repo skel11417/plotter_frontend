@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-// import Icon from '../component/Icon'
 import Draggable from '../component/Draggable'
 
 class Stage extends Component {
@@ -18,7 +17,7 @@ class Stage extends Component {
 
   render(){
     return (
-      <div id="parent" style={this.style}>
+      <div id="parent"  style={this.style}>
       {this.props.itemsOnStage.map(item =>
         <Draggable
           item={item}
