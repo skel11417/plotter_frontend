@@ -134,9 +134,10 @@ class App extends Component {
     return (
       <div>
         <Nav plotId={plotId} slug={slug} saved={saved} savePlot={this.savePlot}/>
-        <Toolbar
+      {/**<Toolbar
           itemList={itemList} addItemToStage={this.addItemToStage}
         />
+        **/}
         <Stage itemsOnStage={this.state.itemsOnStage} updateItemPos={this.updateItemPos}
         setCurrentItem={this.setCurrentItem}
         deleteItem={this.deleteItem}/>

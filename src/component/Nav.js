@@ -9,7 +9,7 @@ const Nav = (props) => {
   return (
     <nav style={{backgroundColor: 'black',
         color: 'white',
-        height: '80px'}} >
+        height: 'auto'}} >
       <h1>Stage Plotter</h1>
       <Button secondary size="mini" style={style} onClick={props.savePlot}>
         <Icon name="save"/>Save Plot</Button>

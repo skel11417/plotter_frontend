@@ -4,14 +4,14 @@ import Draggable from '../component/Draggable'
 class Stage extends Component {
 
   state = {
-    bounds: {top: 0, left: 0, bottom: 300, right: 600}
+    bounds: {top: 0, left: 0, bottom: 600, right: 1000}
   }
 
   style = {
     border: 'black 1px solid',
-    minHeight: '300px',
+    minHeight: '600px',
     position: 'relative',
-    width: '600px',
+    width: '1000px',
     marginLeft: '20px'
   }
 
