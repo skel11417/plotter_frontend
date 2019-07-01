@@ -9,7 +9,11 @@ class Toolbar extends Component {
           <img
             key={item.id}
             alt={item.name}
-            src={require(`../icons/${item.image}`)} style={{display: 'inline', height: '80px'}} onDoubleClick={() => this.props.addItemToStage(item)}/>)}
+            src={require(`../icons/${item.image}`)} style={{display: 'inline', height: '80px'}} onDoubleClick={() => {
+              this.props.addItemToStage(item)
+              this.props.closeToolbar()
+              }
+            }/>)}
       </div>
     )
   }

@@ -12,14 +12,18 @@ class ItemSelector extends Component {
   }
 
   render(){
-    const {toolbarOpen, closeToolbar} = this.props
+    const {toolbarOpen, closeToolbar, itemList, addItemToStage} = this.props
 
     return (
       <>
         <Modal size={'large'} open={toolbarOpen}   onClose={closeToolbar}>
           <Modal.Header>Select Your Item</Modal.Header>
           <Modal.Content>
-            <Toolbar itemList={this.props.itemList}/>
+            <Toolbar
+              itemList={itemList}
+              addItemToStage={addItemToStage}
+              closeToolbar={closeToolbar}
+            />
           </Modal.Content>
         </Modal>
       </>

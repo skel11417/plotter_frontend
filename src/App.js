@@ -3,7 +3,6 @@ import './App.css';
 import 'semantic-ui-css/semantic.min.css'
 import bgImage from './icons/band-on-stage.jpg'
 import Nav from './component/Nav'
-// import Toolbar from './container/Toolbar'
 import ItemSelector from './component/ItemSelector'
 import Stage from './container/Stage'
 
@@ -17,7 +16,8 @@ class App extends Component {
       plotId: null,
       slug: this.props.match.params.slug,
       saved: false,
-      toolbarOpen: true
+      toolbarOpen: false,
+      clickPosition: {x: 0, y: 0}
     }
   }
 
@@ -28,6 +28,11 @@ class App extends Component {
 
   closeToolbar = () => {
     this.setState({toolbarOpen: false})
+  }
+
+  setClickPosition = (x, y) => {
+    this.setState({clickPosition: {x: x, y: y}})
+    console.log(x, y)
   }
 
   getItemList = () =>{
@@ -148,12 +153,13 @@ class App extends Component {
           itemList={itemList}
           toolbarOpen={toolbarOpen}
           closeToolbar={this.closeToolbar}
-          />
+          addItemToStage={this.addItemToStage}
+        />
         <Stage
           itemsOnStage={this.state.itemsOnStage} updateItemPos={this.updateItemPos}
           setCurrentItem={this.setCurrentItem}
-          addItemToStage={this.addItemToStage}
           openToolbar={this.openToolbar}
+          setClickPosition={this.setClickPosition}
           itemList={itemList}
           deleteItem={this.deleteItem}
         />
