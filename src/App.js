@@ -3,7 +3,8 @@ import './App.css';
 import 'semantic-ui-css/semantic.min.css'
 import bgImage from './icons/band-on-stage.jpg'
 import Nav from './component/Nav'
-import Toolbar from './container/Toolbar'
+// import Toolbar from './container/Toolbar'
+import ItemSelector from './component/ItemSelector'
 import Stage from './container/Stage'
 
 class App extends Component {
@@ -15,8 +16,18 @@ class App extends Component {
       itemList: [],
       plotId: null,
       slug: this.props.match.params.slug,
-      saved: false
+      saved: false,
+      toolbarOpen: true
     }
+  }
+
+  // closes or opens toolbar for user to select item
+  openToolbar = () => {
+    this.setState({toolbarOpen: true})
+  }
+
+  closeToolbar = () => {
+    this.setState({toolbarOpen: false})
   }
 
   getItemList = () =>{
@@ -111,7 +122,6 @@ class App extends Component {
       .then(this.updatePlotState)
   }
 
-
   updateItemPos = (updatedItem) => {
     this.setState({
       itemsOnStage: this.newItemPosition(updatedItem),
@@ -130,18 +140,24 @@ class App extends Component {
   }
 
   render(){
-    const {plotId, slug, itemList, saved} = this.state
+    const {plotId, slug, itemList, saved, toolbarOpen} = this.state
     return (
       <div>
         <Nav plotId={plotId} slug={slug} saved={saved} savePlot={this.savePlot}/>
-      {/**<Toolbar
-          itemList={itemList} addItemToStage={this.addItemToStage}
+        <ItemSelector
+          itemList={itemList}
+          toolbarOpen={toolbarOpen}
+          closeToolbar={this.closeToolbar}
+          />
+        <Stage
+          itemsOnStage={this.state.itemsOnStage} updateItemPos={this.updateItemPos}
+          setCurrentItem={this.setCurrentItem}
+          addItemToStage={this.addItemToStage}
+          openToolbar={this.openToolbar}
+          itemList={itemList}
+          deleteItem={this.deleteItem}
         />
-        **/}
-        <Stage itemsOnStage={this.state.itemsOnStage} updateItemPos={this.updateItemPos}
-        setCurrentItem={this.setCurrentItem}
-        deleteItem={this.deleteItem}/>
-        </div>
+      </div>
     );
   }
 }

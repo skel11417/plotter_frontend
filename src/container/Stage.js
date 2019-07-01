@@ -15,9 +15,16 @@ class Stage extends Component {
     marginLeft: '20px'
   }
 
+  clickHandler = (e) => {
+    let sampleItem = this.props.itemList[0]
+    if (e.target.id === "parent") {
+      this.props.openToolbar()
+    }
+  }
+
   render(){
     return (
-      <div id="parent"  style={this.style}>
+      <div id="parent" onClick={(e)=>this.clickHandler(e)} style={this.style}>
       {this.props.itemsOnStage.map(item =>
         <Draggable
           item={item}
