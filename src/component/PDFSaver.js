@@ -1,10 +1,8 @@
 import React, {Component} from 'react'
-import { PDFExport, savePDF } from '@progress/kendo-react-pdf'
+import { PDFExport } from '@progress/kendo-react-pdf'
 import {Modal} from 'semantic-ui-react'
 import StaticStage from '../container/StaticStage'
-import styled from 'styled-components'
-
-const input = styled.div``
+// import styled from 'styled-components'
 
 class PDFSaver extends Component {
 
@@ -28,7 +26,6 @@ class PDFSaver extends Component {
   }
 
   renderInputList = () => {
-    const itemsOnStage = this.props.itemsOnStage
     const itemList = this.props.itemList
     // create an array consisting of items with their count
     const itemCount = []
@@ -42,7 +39,7 @@ class PDFSaver extends Component {
 
     return itemCount.map((item, index) => {
       return(
-        <tr>
+        <tr key={index}>
           <td>{index+1}</td>
           <td>{this.parseName(item.name)}</td>
           <td>{item.count}</td>

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
 import 'semantic-ui-css/semantic.min.css'
-import bgImage from './icons/band-on-stage.jpg'
 import Nav from './component/Nav'
 import PDFSaver from './component/PDFSaver'
 import ItemSelector from './component/ItemSelector'
@@ -155,7 +154,7 @@ class App extends Component {
   }
 
   render(){
-    const {plotId, slug, itemList, saved, showPDF, toolbarOpen, itemsOnStage} = this.state
+    const {plotId, slug, itemList, saved, toolbarOpen, itemsOnStage} = this.state
     return (
       <div>
         <Nav plotId={plotId} slug={slug} saved={saved} savePlot={this.savePlot} showPDF={this.showPDF}/>
