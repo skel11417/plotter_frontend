@@ -85,6 +85,11 @@ class App extends Component {
   }
 
   addItemToStage = (item) => {
+    // set intended position of item
+    item.x = this.state.clickPosition.x
+    item.y = this.state.clickPosition.y
+
+    // handle new url
     let URL
     let options
     let newPlot = false
