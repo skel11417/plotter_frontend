@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Button, Modal, Icon, Input} from 'semantic-ui-react'
+import {Modal} from 'semantic-ui-react'
 import Toolbar from '../container/Toolbar'
 
 class ItemSelector extends Component {

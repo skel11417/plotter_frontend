@@ -3,6 +3,7 @@ import './App.css';
 import 'semantic-ui-css/semantic.min.css'
 import bgImage from './icons/band-on-stage.jpg'
 import Nav from './component/Nav'
+import PDFSaver from './component/PDFSaver'
 import ItemSelector from './component/ItemSelector'
 import Stage from './container/Stage'
 
@@ -17,7 +18,8 @@ class App extends Component {
       slug: this.props.match.params.slug,
       saved: false,
       toolbarOpen: false,
-      clickPosition: {x: 0, y: 0}
+      clickPosition: {x: 0, y: 0},
+      PDFVisible: false
     }
   }
 
@@ -32,8 +34,11 @@ class App extends Component {
 
   setClickPosition = (x, y) => {
     this.setState({clickPosition: {x: x, y: y}})
-    console.log(x, y)
   }
+
+  showPDF = () => this.setState({PDFVisible: true})
+
+  hidePDF = () => this.setState({PDFVisible: false})
 
   getItemList = () =>{
     fetch('http://localhost:3000/items/')
@@ -50,7 +55,7 @@ class App extends Component {
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({items: this.state.itemsOnStage})
     }
-    fetch(URL, options )
+    fetch(URL, options)
       .then(resp => resp.json())
       .then((plot) => {
         this.updatePlotState(plot)
@@ -150,18 +155,22 @@ class App extends Component {
   }
 
   render(){
-    const {plotId, slug, itemList, saved, toolbarOpen} = this.state
+    const {plotId, slug, itemList, saved, showPDF, toolbarOpen, itemsOnStage} = this.state
     return (
       <div>
-        <Nav plotId={plotId} slug={slug} saved={saved} savePlot={this.savePlot}/>
+        <Nav plotId={plotId} slug={slug} saved={saved} savePlot={this.savePlot} showPDF={this.showPDF}/>
         <ItemSelector
           itemList={itemList}
           toolbarOpen={toolbarOpen}
           closeToolbar={this.closeToolbar}
           addItemToStage={this.addItemToStage}
         />
+        <PDFSaver itemsOnStage={itemsOnStage}
+        itemList={itemList}
+        PDFVisible={this.state.PDFVisible}
+        hidePDF={this.hidePDF}/>
         <Stage
-          itemsOnStage={this.state.itemsOnStage} updateItemPos={this.updateItemPos}
+          itemsOnStage={itemsOnStage} updateItemPos={this.updateItemPos}
           setCurrentItem={this.setCurrentItem}
           openToolbar={this.openToolbar}
           setClickPosition={this.setClickPosition}

@@ -10,7 +10,7 @@ class Draggable extends React.Component {
       rel: {}, // position relative to the cursor
       width: 0,
       height: 0
-    } 
+    }
   }
 
   static defaultProps = {
@@ -39,10 +39,9 @@ class Draggable extends React.Component {
       top: e.nativeEvent.target.offsetTop,
       left: e.nativeEvent.target.offsetLeft
     }
-    // Use this to get information about parent div?
     // This is janky but it does the job
     const clientRect = e.nativeEvent.target.getBoundingClientRect()
-    // let pos = e.nativeEvent.target.getBoundingClientRect()
+
     //Conditional logic to move element
     this.setState({
       dragging: true,
@@ -60,7 +59,10 @@ class Draggable extends React.Component {
   onMouseUp = (e) => {
     this.setState({dragging: false})
     // update the state in App
-    this.props.updateItemPos({pos: this.state.pos, id: this.props.item.items_plots_id})
+    this.props.updateItemPos({
+      pos: this.state.pos,
+      id: this.props.item.items_plots_id
+    })
 
     e.stopPropagation()
     e.preventDefault()
@@ -110,7 +112,6 @@ class Draggable extends React.Component {
         position: 'absolute',
         left: this.state.pos.x + 'px',
         top: this.state.pos.y + 'px',
-        // height: 'auto',
         float: 'left'
       }
 

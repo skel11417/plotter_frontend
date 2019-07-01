@@ -13,6 +13,10 @@ const Nav = (props) => {
       <h1>Stage Plotter</h1>
       <Button secondary size="mini" style={style} onClick={props.savePlot}>
         <Icon name="save"/>Save Plot</Button>
+      <Button style={{display: 'inline'}} primary size='mini'  onClick={props.showPDF}>
+        <Icon name='pdf' />
+          Export as PDF
+      </Button>
       {props.plotId ? <ModalContainer slug={props.slug}/> :null }
     </nav>
   )

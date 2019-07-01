@@ -16,7 +16,6 @@ class Stage extends Component {
   }
 
   clickHandler = (e) => {
-    let sampleItem = this.props.itemList[0]
     if (e.target.id === "parent") {
       this.props.openToolbar()
       this.props.setClickPosition(e.nativeEvent.offsetX, e.nativeEvent.offsetY)
