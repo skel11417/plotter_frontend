@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { PDFExport, savePDF } from '@progress/kendo-react-pdf'
 import {Modal} from 'semantic-ui-react'
-import inputMap from '../inputMap.js'
+import StaticStage from '../container/StaticStage'
 import styled from 'styled-components'
 
 const input = styled.div``
@@ -72,7 +72,7 @@ class PDFSaver extends Component {
             overflowX: 'hidden',
             overflowY: 'hidden'}}>
             <h1>Stage Plot</h1>
-            <div>The stage will go here</div>
+            <StaticStage itemsOnStage={this.props.itemsOnStage}/>
               <div>
                 <h3>Input List</h3>
                 <table>
