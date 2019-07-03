@@ -63,7 +63,7 @@ class Draggable extends React.Component {
       pos: this.state.pos,
       id: this.props.item.items_plots_id
     })
-
+    this.props.autoSave()
     e.stopPropagation()
     e.preventDefault()
   }
@@ -119,10 +119,7 @@ class Draggable extends React.Component {
       cursor="pointer"
       alt="mic"
       src={require(`../icons/${this.props.item.image}`)}
-      
-
       pos={this.state.pos}
-
       onMouseDown={this.onMouseDown}
       onMouseUp={this.onMouseUp}
       onMouseMove={this.onMouseMove}

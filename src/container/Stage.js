@@ -33,6 +33,7 @@ class Stage extends Component {
           initialPos={{x: item.x, y: item.y}}
           bounds={this.state.bounds}
           deleteItem={this.props.deleteItem}
+          autoSave={this.props.autoSave}
           updateItemPos={this.props.updateItemPos}
           style={{
             border: '2px solid #aa5',
