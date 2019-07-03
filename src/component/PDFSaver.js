@@ -50,7 +50,7 @@ class PDFSaver extends Component {
   render(){
     return(
       <>
-        <Modal open={this.props.PDFVisible} size="medium" onClose={this.props.hidePDF} closeIcon style={{backgroundColor: 'rgb(235, 235, 235)'}}>
+        <Modal open={this.props.PDFVisible} size="small" onClose={this.props.hidePDF} closeIcon style={{backgroundColor: 'rgb(235, 235, 235)'}}>
         <button onClick={this.exportPDF}>DownloadPDF</button>
           <PDFExport paperSize={'Letter'}
           fileName="Stage Plot.pdf"

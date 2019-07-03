@@ -14,7 +14,6 @@ class StaticItem extends Component {
       alt="mic"
       className = {this.props.item.name}
       src={require(`../icons/${this.props.item.image}`)}
-      className = {this.props.item.name}
       style={style}></img>
   }
 }
