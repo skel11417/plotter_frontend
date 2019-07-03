@@ -21,7 +21,7 @@ class ModalContainer extends Component {
     return (
       <>
         <Button style={{display: 'inline'}} primary size='mini'  onClick={this.show('mini')}>
-          <Icon name='url' />
+          <Icon name='bookmark' />
             Share
         </Button>
         <Modal size={size} open={open} onClose={this.close}>

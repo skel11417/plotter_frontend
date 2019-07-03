@@ -78,7 +78,6 @@ class App extends Component {
       .then(resp => resp.json())
       .then((plot) => {
         this.updatePlotState(plot)
-        console.log('saved')
         this.setState({
           saved: true,
           timerActive: false

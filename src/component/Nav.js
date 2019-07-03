@@ -4,7 +4,7 @@ import {Button, Icon} from 'semantic-ui-react'
 const Nav = (props) => {
   const style = {}
   props.plotId ? style.display = '' : style.display = 'none'
-  props.saved ? style.backgroundColor = 'grey' : style.backgroundColor = 'green'
+  props.saved ? style.backgroundColor = 'green' : style.backgroundColor = 'grey'
 
   return (
     <nav style={{backgroundColor: 'black',
@@ -14,7 +14,7 @@ const Nav = (props) => {
       <Button secondary size="mini" style={style} onClick={props.savePlot}>
         <Icon name="save"/>Save Plot</Button>
       <Button style={{display: 'inline'}} primary size='mini'  onClick={props.showPDF}>
-        <Icon name='pdf' />
+        <Icon name='download' />
           Export as PDF
       </Button>
       {props.plotId ? <ModalContainer slug={props.slug}/> :null }
