@@ -2,11 +2,6 @@ import React, {Component} from 'react'
 import { PDFExport } from '@progress/kendo-react-pdf'
 import {Modal} from 'semantic-ui-react'
 import StaticStage from '../container/StaticStage'
-import styled from 'styled-components'
-
-const pdfContent = styled.div`
-
-`
 
 class PDFSaver extends Component {
 
@@ -63,18 +58,9 @@ class PDFSaver extends Component {
           subject=""
           keywords=""
           ref={(r) => this.stagePlot = r}>
-          <div style={{
-            height: 792,
-            width: 612,
-            padding: '0',
-            backgroundColor: 'white',
-            boxShadow: '1px 0px 5px black',
-            margin: 'auto',
-            overflowX: 'hidden',
-            textAlign: 'center',
-            overflowY: 'hidden'}}>
-            <h1 style={{fontSize: '4em'}}>Stage Plot</h1>
-            <StaticStage itemsOnStage={this.props.itemsOnStage}/>
+            <div id="pdf-content">
+              <h1 style={{fontSize: '4em'}}>Stage Plot</h1>
+              <StaticStage itemsOnStage={this.props.itemsOnStage}/>
               <div>
                 <h3>Input List</h3>
                 <table>

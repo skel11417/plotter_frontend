@@ -14,13 +14,11 @@ class StaticStage extends Component {
     return(
       <Container id="staticstage">
        {this.props.itemsOnStage.map(item =>
-
           <StaticItem
           item={item}
           key={item.items_plots_id}
           position={{x: item.x, y: item.y}}
           />
-
           )
         }
       </Container>

@@ -13,19 +13,14 @@
   border: solid black 1px;
 }
 
-#staticstage img {
-
+#pdf-content {
+  height: 792px;
+  width: 612px;
+  padding: 0px;
+  background-color: white;
+  box-shadow: 1px 0px 5px black;
+  margin: auto;
+  overflow-x: hidden;
+  text-align: center;
+  overflow-y: hidden
 }
-
-/* figure {
-  transform: scale(0.6)
-    position: relative;
-    left: 0;
-    top: 0;
-    -webkit-transform: scale(0.6);
-    -moz-transform: scale(0.6);
-    -ms-transform: scale(0.6);
-    -o-transform: scale(0.6);
-    transform: scale(0.6);
-    transform-origin: left;
-} */
