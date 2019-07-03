@@ -18,7 +18,7 @@ class App extends Component {
       saved: false,
       toolbarOpen: false,
       clickPosition: {x: 0, y: 0},
-      PDFVisible: false
+      PDFVisible: true
     }
   }
 

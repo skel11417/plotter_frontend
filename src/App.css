@@ -8,3 +8,24 @@
   opacity: 0.8;
   padding: 0 2px;
 }
+
+#staticstage {
+  border: solid black 1px;
+}
+
+#staticstage img {
+
+}
+
+/* figure {
+  transform: scale(0.6)
+    position: relative;
+    left: 0;
+    top: 0;
+    -webkit-transform: scale(0.6);
+    -moz-transform: scale(0.6);
+    -ms-transform: scale(0.6);
+    -o-transform: scale(0.6);
+    transform: scale(0.6);
+    transform-origin: left;
+} */

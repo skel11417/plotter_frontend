@@ -1,5 +1,5 @@
 import React from 'react'
-import '../Draggable.css'
+import '../PDFItem.css'
 class Draggable extends React.Component {
 
   constructor(props){
@@ -119,7 +119,7 @@ class Draggable extends React.Component {
       cursor="pointer"
       alt="mic"
       src={require(`../icons/${this.props.item.image}`)}
-      className = {this.props.item.name}
+      
 
       pos={this.state.pos}
 
