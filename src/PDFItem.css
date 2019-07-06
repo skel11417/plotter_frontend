@@ -6,6 +6,10 @@
   width: 72px;
 }
 
+.guitar-amp-combo {
+  width: 54px;
+}
+
 .monitor {
   width: 54px;
 }
@@ -20,6 +24,10 @@
 
 .mic-stand-boom {
   width: 54px;
+}
+
+.mic-stand-straight {
+  width: 36px;
 }
 
 .keyboard-single {
@@ -38,39 +46,34 @@
   width: 36px;
 }
 
-/*  unmodified */
-.bongo-drums {
-  width: 54px
+.bongos {
+  width: 42px;
 }
 
 .clarinet {
   width: 72px;
 }
 
-.conga-drum {
-  width: 54px;
+.single-conga {
+  width: 60px;
 }
 
 .congas {
   width: 60px;
 }
 
-.guitar-amp-combo {
-  width: 54px;
-}
 .IEM-transmitter {
-  width: 54px;
+  width: 72px;
 }
-.mic-stand-straight {
-  width: 54px;
+
+.trumpet {
+  width: 24px;
 }
 
 .saxophone {
-  width: 54px;
+  width: 42px;
 }
-.trumpet {
-  width: 54px;
-}
+
 .violin {
-  width: 54px;
+  width: 48px;
 }
