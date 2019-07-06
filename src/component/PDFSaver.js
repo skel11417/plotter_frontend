@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { PDFExport } from '@progress/kendo-react-pdf'
-import {Modal} from 'semantic-ui-react'
+import {Modal, Button, Icon} from 'semantic-ui-react'
 import StaticStage from '../container/StaticStage'
 
 class PDFSaver extends Component {
@@ -51,7 +51,7 @@ class PDFSaver extends Component {
     return(
       <>
         <Modal open={this.props.PDFVisible} size="small" onClose={this.props.hidePDF} closeIcon style={{backgroundColor: 'rgb(235, 235, 235)'}}>
-        <button onClick={this.exportPDF}>DownloadPDF</button>
+        <Button style={{margin: '10px 55px'}} color="orange"   onClick={this.exportPDF}><Icon name="download"/>Download PDF</Button>
           <PDFExport paperSize={'Letter'}
           fileName="Stage Plot.pdf"
           title=""
