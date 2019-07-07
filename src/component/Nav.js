@@ -22,7 +22,7 @@ const Nav = (props) => {
         <ModalContainer slug={props.slug}/>
         </div>
         :
-        <div>
+        <div style={{fontSize: '1.5em'}}>
           Click the stage to get started.
         </div>
        }

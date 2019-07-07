@@ -25,11 +25,15 @@ class ModalContainer extends Component {
             Share Link
         </Button>
         <Modal size={size} open={open} onClose={this.close}>
-          <Modal.Header>Share your plot</Modal.Header>
+          <Modal.Header>Bookmark this link</Modal.Header>
           <Modal.Content>
+            <div>
+              Bookmark this page or copy and save this link.
+            </div>
+            <br/>
             <CopyToClipboard text={url}
             onCopy={this.copyAndClose}>
-              <Input size='mini' icon='linkify' value={url} />
+              <Input fluid size='small' icon='copy' value={url} />
             </CopyToClipboard>
             {this.state.copied ? <span style={{color: 'blue'}}> Link copied.</span> : null}
           </Modal.Content>
