@@ -8,12 +8,13 @@ class Stage extends Component {
   }
 
   style = {
-    border: 'black 1px solid',
+    border: 'grey 1px solid',
     minHeight: '600px',
     width: '1000px',
     position: 'relative',
     // marginLeft: '20px',
-    margin: 'auto'
+    margin: 'auto',
+    backgroundColor: 'white'
   }
 
   clickHandler = (e) => {

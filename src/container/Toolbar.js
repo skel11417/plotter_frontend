@@ -12,6 +12,7 @@ class Toolbar extends Component {
         {this.props.itemList.map(item =>
           <Popup
             content={this.parseName(item.name)}
+            key={item.id}
             trigger={
               <img
               key={item.id}

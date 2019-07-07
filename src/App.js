@@ -179,7 +179,7 @@ class App extends Component {
   render(){
     const {plotId, slug, itemList, saved, toolbarOpen, itemsOnStage} = this.state
     return (
-      <div>
+      <div id="main">
         <Nav
           plotId={plotId}
           slug={slug}

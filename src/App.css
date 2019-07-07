@@ -1,3 +1,7 @@
+#main {
+  background-color: rgb(235, 235, 235)
+}
+
 #toolbar img:hover {
   opacity: 1;
 }

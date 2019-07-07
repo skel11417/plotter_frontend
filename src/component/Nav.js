@@ -10,7 +10,7 @@ const Nav = (props) => {
         color: 'white',
         height: '100px',
         padding: '10px'}} >
-      <h1 style={{fontSize: '2.5em'}}>Stage Plotter</h1>
+      <h1 style={{fontSize: '2.5em', marginBottom: '7px'}}>Stage Plotter</h1>
       {props.plotId ?
         <div>
         <Button secondary size="mini" style={{display: 'none'}} onClick={props.savePlot}>
