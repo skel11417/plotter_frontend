@@ -16,7 +16,7 @@ class ItemSelector extends Component {
 
     return (
       <>
-        <Modal size={'large'} open={toolbarOpen}   onClose={closeToolbar}>
+        <Modal size={'small'} open={toolbarOpen}   onClose={closeToolbar}>
           <Modal.Header>Select Your Item</Modal.Header>
           <Modal.Content>
             <Toolbar
