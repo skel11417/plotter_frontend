@@ -22,7 +22,7 @@ class ModalContainer extends Component {
       <>
         <Button style={{display: 'inline'}} primary size='mini'  onClick={this.show('mini')}>
           <Icon name='bookmark' />
-            Share
+            Share Link
         </Button>
         <Modal size={size} open={open} onClose={this.close}>
           <Modal.Header>Share your plot</Modal.Header>

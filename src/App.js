@@ -19,7 +19,7 @@ class App extends Component {
       timerActive: false,
       toolbarOpen: false,
       clickPosition: {x: 0, y: 0},
-      PDFVisible: true
+      PDFVisible: false
     }
   }
 
