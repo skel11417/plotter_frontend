@@ -28,7 +28,7 @@ class ModalContainer extends Component {
           <Modal.Header>Bookmark this link</Modal.Header>
           <Modal.Content>
             <div>
-              Bookmark this page or copy and save this link.
+              Bookmark this page or copy and save the link below.
             </div>
             <br/>
             <CopyToClipboard text={url}

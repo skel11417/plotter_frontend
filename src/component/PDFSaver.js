@@ -24,10 +24,33 @@ class PDFSaver extends Component {
     return count
   }
 
+  renderTable = (itemArray) => {
+    return(
+      <table style={{padding: '5px 15px'}}>
+        <tbody>
+          <tr>
+            <th></th>
+            <th>Item</th>
+            <th>Count</th>
+          </tr>
+          {itemArray.map((item, index) => {
+            return(
+              <tr key={item.index}>
+              <td className="table-index">{item.index}</td>
+              <td>{this.parseName(item.name)}</td>
+              <td className="table-count">{item.count}</td>
+              </tr>
+            )}
+          )}
+        </tbody>
+      </table>
+    )
+  }
+
   renderInputList = () => {
     const itemList = this.props.itemList
-    // create an array consisting of items with their count
     const itemCount = []
+    // create an array consisting of items with their count
     itemList.forEach(item => {
       let count = this.countInputs(item)
       if (count > 0) {
@@ -36,15 +59,22 @@ class PDFSaver extends Component {
       }
     })
 
-    return itemCount.map((item, index) => {
-      return(
-        <tr key={index}>
-          <td>{index+1}</td>
-          <td>{this.parseName(item.name)}</td>
-          <td>{item.count}</td>
-        </tr>
-      )
+    itemCount.forEach((item, index) => {
+      item.index = index + 1
     })
+
+    const arrayLength = itemCount.length
+
+    return(
+      <>
+        {this.renderTable(itemCount.slice(0,10))}
+        {arrayLength > 10 ?
+          this.renderTable(itemCount.slice(10,20))
+          :
+          null
+        }
+      </>
+    )
   }
 
   render(){
@@ -63,16 +93,9 @@ class PDFSaver extends Component {
               <StaticStage itemsOnStage={this.props.itemsOnStage}/>
               <div>
                 <h3>Input List</h3>
-                <table>
-                  <tbody>
-                    <tr>
-                      <th></th>
-                      <th>Input</th>
-                      <th>Count</th>
-                    </tr>
+                <div style={{display: 'flex'}}>
                     {this.renderInputList()}
-                  </tbody>
-                </table>
+                </div>
               </div>
             </div>
           </PDFExport>
