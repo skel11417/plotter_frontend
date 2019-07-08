@@ -5,7 +5,7 @@ import {CopyToClipboard} from 'react-copy-to-clipboard';
 class ModalContainer extends Component {
   state = {
     open: false,
-    url: 'http://localhost:3001/' + this.props.slug,
+    url: 'https://stage-plotter.herokuapp.com/' + this.props.slug,
     copied: false,
   }
 
