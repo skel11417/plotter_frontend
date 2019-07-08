@@ -59,7 +59,7 @@ class App extends Component {
 
   // returns list of possible items
   getItemList = () =>{
-    fetch('http://localhost:3000/items/')
+    fetch('https://stage-plotter-backend.herokuapp.com/items/')
       .then(resp => resp.json())
       .then((items) => this.setState({
             itemList: items
@@ -68,7 +68,7 @@ class App extends Component {
 
   // saves the position of all of the items on stage
   savePlot = () =>{
-    const URL = `http://localhost:3000/plots/${this.state.plotId}`
+    const URL = `https://stage-plotter-backend.herokuapp.com/plots/${this.state.plotId}`
     const options = {
       method: "PUT",
       headers: {"Content-Type": "application/json"},
@@ -106,7 +106,7 @@ class App extends Component {
 
   getStagePlot = () => {
     // retrieves stagePlot using url slug
-    let URL = `http://localhost:3000/plots/${this.state.slug}`
+    let URL = `https://stage-plotter-backend.herokuapp.com/plots/${this.state.slug}`
     return fetch(URL).then(resp => resp.json()).then(this.setState({saved: true}))
   }
 
@@ -120,7 +120,7 @@ class App extends Component {
     let options
     let newPlot = false
     if (this.state.plotId){
-      URL = `http://localhost:3000/plots/${this.state.plotId}`
+      URL = `https://stage-plotter-backend.herokuapp.com/plots/${this.state.plotId}`
       options = {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
@@ -128,7 +128,7 @@ class App extends Component {
       }
     } else {
       newPlot = true
-      URL = "http://localhost:3000/plots/"
+      URL = "https://stage-plotter-backend.herokuapp.com/plots/"
       options = {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -147,7 +147,7 @@ class App extends Component {
   }
 
   deleteItem = (item) => {
-    const URL = `http://localhost:3000/plots/${this.state.plotId}`
+    const URL = `https://stage-plotter-backend.herokuapp.com/plots/${this.state.plotId}`
     const options = {
       method: "DELETE",
       headers: {"Content-Type": "application/json"},
